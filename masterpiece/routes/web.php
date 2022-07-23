@@ -53,5 +53,38 @@ Route::get('/cardetails', function () {
     return view('Pages/car-details');
 });
 
+//---------------------------------admin dashboard routes
+
+Route::get('/dash', function () {
+    return view('dashboard.index');
+});
+
+Route::get('/adminregister', function () {
+    return view('dashboard.page-register');
+});
+
+Route::get('/adminlogin', function () {
+    return view('dashboard.page-login');
+});
+
+Route::get('/adminprofile', function () {
+    return view('dashboard.app-profile');
+});
 
 
+Route::get('/calender', function () {
+    return view('dashboard.app-calender');
+});
+
+
+Route::get('/table1', function () {
+    return view('dashboard.table-datatable');
+});
+
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

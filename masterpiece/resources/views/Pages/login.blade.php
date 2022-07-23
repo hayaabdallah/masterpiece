@@ -2,8 +2,8 @@
 @section('content')
 
      <!-- CONTACT -->
-     <section >
-          <div class="container" style="border-radius: 40px; margin-bottom: 6%;  padding: 5%;margin-top: 8%;background-color:#b3ecd7;width:700px">
+     <section style="background-image: url('https://fallone.studio/wp-content/uploads/2022/01/5793-Fallone-Studio-Liquid-Detail.jpg')">
+          <div class="container" style="border-radius: 40px; margin-bottom: 6%;  padding: 5%;margin-top: 8%;background-color:#d1e9e0;width:700px">
                <div class="row">
 
                     <div class="col-md-12 col-sm-12" >

@@ -15,6 +15,14 @@
      <link rel="stylesheet" href="assets/css/font-awesome.min.css">
      <link rel="stylesheet" href="assets/css/owl.carousel.css">
      <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    
+     {{-- auth --}}
+     
+     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" > --}}
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+     
+     {{-- end auth --}}
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="assets/css/style.css">
@@ -60,14 +68,55 @@
                               </ul>
                          </li>
                          <li><a href="/contact">Contact us</a></li>
-                         <li class="dropdown">
+                         {{-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
                               
                               <ul class="dropdown-menu">
 			                         <li><a href="/login">Login</a></li>
                                         <li><a href="/register">Sign up</a></li>
                               </ul>
-                         </li>
+                         </li> --}}
+                         @guest
+@if (Route::has('login'))
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}">{{ ('Login') }}</a>
+    </li>
+@endif
+
+@if (Route::has('register'))
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('register') }}">{{ ('Register') }}</a>
+    </li>
+@endif
+@else
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        {{ Auth::user()->name }}
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}">
+            {{ ('Profile') }}
+        </a>
+        @if (Auth::user()->role_type == 1)
+        <a class="dropdown-item" href="/admin">
+            {{ ('Admin Dashboard') }}
+        </a>
+   @endif
+        <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                                                                                                                         document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+            class="d-none">
+            @csrf
+        </form>
+    </div>
+</li>
+@endguest
                     </ul>
                </div>
 
